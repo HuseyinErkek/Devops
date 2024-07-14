@@ -1,0 +1,48 @@
+--------------------Docker Nedir------------------
+Docker: Uygulamaların, bağımlılıklarının ve yapılandırmalarının bir arada bulunduğu ve her ortamda tutarlı
+bir şekilde çalışabilen konteynerler oluşturmayı sağlayan bir platformdur. Docker, uygulamaların çalışması
+için gereken her şeyi (kod, çalışma zamanı, sistem araçları, sistem kitaplıkları) bir araya getirir ve bu 
+sayede farklı ortamlarda çalışırken oluşabilecek "çalışıyor ama benim bilgisayarımda" sorunlarını ortadan kaldırır.
+---------------Docker Conteiner Nedir-------------
+Konteyner: Uygulamanın ve bağımlılıklarının bir arada bulunduğu izole çalışma ortamıdır. Konteynerler, aynı işletim
+sistemi çekirdeğini paylaşır ancak birbirlerinden ve host sisteminden izole edilmiş olarak çalışır. Bu, uygulamaların
+birbirinden bağımsız ve güvenli bir şekilde çalışmasını sağlar.
+-----------------Docker Image Nedir----------------
+İmaj (Image): Konteynerlerin çalışması için gereken tüm dosyaları ve bağımlılıkları içeren salt okunur şablondur.
+Bir Docker imajı, uygulamanın dosyalarını, bağımlılıklarını, yapılandırma dosyalarını ve çalışma zamanını içerir.
+İmajlar, Docker konteynerlerinin oluşturulması için temel alınır.
+--------------------Docker komut seti-------------
+docker --version -> yüklü olan docker versionunu gösterir.
+docker pull <image_name> -> docker hubtan imaj çeker. Ex: docker pull ubuntu
+docker run -> Bir docker conterneri başlatır. Ex: docker run -it ubuntu /bin/bash
+docker ps -> Çalışan conternerleri listeler.
+docker ps -a -> Çalışan çalışmayan tüm conternerleri gösterir.
+docker stop ->Çalışan conterneri durdurur.
+docker start -> Durmuş conterneri çalıştırır.
+docker rm ->Bir conterneri siler.
+docker rm $(docker ps -a -q) -> Tüm conternerleri siler.
+docker rmi <image_name> -> Image siler.
+docker image -> Yerel docker imageleri listeler.
+docker build -> Dockerfile kullanarak bir image oluşturu. Ex: docker build -t myapp:latest .
+docker exec <options> <container_id> <command> -> Çalışan conternerda komut calıştırır. 
+Ex:docker exec -it <container_id> /bin/bash
+docker logs -> Bir conternerin loglarını görüntüler.
+docker-compose up -> Mutliconteiner uygulamalarini yönetir. 
+docker-compose down -> uygulamalarini durdurur.
+docker network create <network_name> -> Docker ağlarını yönetir.Yeni bir ağ üretir.
+--------------------Dockerfile yazmak---------------
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y python3
+CMD ["python3", "--version"]
+------------------Conteiner Çalıştırma--------------
+docker run -p 5000:5000 mypythonapp
+
+
+
+NOT:İmajlar işletim sistemi gibi düşünülebilir.Conternerlar ise izole çalışma ortamı düşünülebilir.
+
+
+
+
+
+
